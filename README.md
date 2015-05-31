@@ -6,7 +6,7 @@ para la distribución huayra.
 
 ## Dependencias generales
 
-Deberías tener instalado pip, virtualenv y redis.
+Deberías tener instalado pip, virtualenv, npm, bower, emberjs y redis.
 
 
 ## ¿Cómo instalar la aplicación?
@@ -49,34 +49,19 @@ honcho start
 honcho es similar a foreman, lee el archivo Procfile y ejecuta
 todos los componentes que ahí encuentre.
 
+Por último, tendrías que visitar la siguiente URL con el
+navegador:
+
+- http://localhost:5000
+
 
 # Notas y otras observaciones
 
-Luego iniciá un servidor redis, lo usa la
-aplicación para intercambiar mensajes entre
-flask y celery.
+Esta aplicación usa 3 componentes principales, un servidor
+web (que atiende en el puerto 5000 por omisión), un gestor
+de tareas celery y una aplicación web desarrollada con emberjs.
 
-  redis-server
-
-y luego iniciá celery:
-
-  venv/bin/celery worker -A app.celery --loglevel=info
-
-  (o bien make celery)
-
-
-Por último, para ver en funcionamiento las tareas:
+Si querés ver el funcionamineto de las tareas podés ejecutar
+este comando:
 
   venv/bin/celery -A app.celery events
-
-
-Luego compilar la aplicación ember:
-
-  make iniciar
-
-
-Para finalizar:
-
-  make ejecutar
-
-y visitar http://localhost:5000
