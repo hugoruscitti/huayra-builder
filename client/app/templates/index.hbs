@@ -1,0 +1,18 @@
+<p>
+  <button {{action "clone" "hugoruscitti" "lanas"}}>clonar repositorio de lanas</button>
+</p>
+
+
+<p>Tareas</p>
+
+{{#if hasTask}}
+<ul>
+
+  {{#each model as |task index|}}
+  <li>{{task.user}}/{{task.repo}} <a href="{{task.status}}">status</a></li>
+  {{/each}}
+
+</ul>
+{{else}}
+  <p>No hay tareas en curso aún...</p>
+{{/if}}
