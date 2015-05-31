@@ -6,6 +6,10 @@ import time
 from flask import Flask, render_template, url_for, jsonify, send_file
 from celery import Celery
 
+import yaml
+file = open('db.yaml', 'r')
+db = yaml.load(file)
+
 TMP_DIR = "tmp"
 
 app = Flask(__name__)
@@ -48,6 +52,16 @@ def build_package_from_repository(self, user, repo):
 
     update_step(5, "Tarea completada")
 
+@celery.task(bind=True)
+def update_task(self):
+    repositories = db['repos']
+    steps = len(repositories)
+    #update_step(5, "Tarea completada")
+
+@app.route('/update')
+def update():
+    task = update_task.apply_async(args=[])
+    return jsonify({'done': True})
 
 @app.route('/clone/<user>/<repo>')
 def clonar(user, repo):
@@ -95,8 +109,17 @@ def index():
     return send_file('client/dist/index.html')
 
 @app.route('/assets/<file>')
-def assets(file):
+def serve_assets(file):
     return send_file('client/dist/assets/' + file)
+
+@app.route('/css/<file>')
+def serve_css(file):
+    return send_file('client/dist/css/' + file)
+
+@app.route('/repos')
+def repos():
+    repositories = {"repos": db['repos']}
+    return jsonify(repositories)
 
 if __name__ == '__main__':
     app.run(debug=True)

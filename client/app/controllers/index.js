@@ -9,22 +9,20 @@ export default Ember.Controller.extend({
 
   statusWatch: function() {
     Ember.run.later(() => {
-      
+
       console.log('tick');
       this.statusWatch();
     }, 1000)
   }.on('init'),
 
   actions: {
-    clone: function(user, repo) {
-      $.ajax('/clone/' + user + '/' + repo).then((data) => {
-        this.store.createRecord('task', {
-          user: user,
-          repo: repo,
-          status: data.status_url,
-        });
 
+    update: function(user, repo) {
+
+      $.ajax('/update').then((data) => {
+        console.log(data);
       });
+
     }
   }
 });

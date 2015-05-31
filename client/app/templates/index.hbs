@@ -1,17 +1,39 @@
+<h1>Huayra Builder</h1>
+
 <p>
-  <button {{action "clone" "hugoruscitti" "lanas"}}>clonar repositorio de lanas</button>
+  <button class='btn btn-success' {{action "update"}}>Forzar actualización</button>
 </p>
 
+<h2>Repositorios a observar:</h2>
 
-<p>Tareas</p>
+
+<table class="table table-striped table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Repositorio</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model.repos as |repo index|}}
+    <tr>
+      <td>{{repo-user repo}}</td>
+      <td>{{repo-name repo}}</td>
+      <td>{{repo-link repo}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+
+<h2>Tareas</h2>
 
 {{#if hasTask}}
 <ul>
-
-  {{#each model as |task index|}}
-  <li>{{task.user}}/{{task.repo}} <a href="{{task.status}}">status</a></li>
+  {{#each model.task as |task index|}}
+    <li>{{task.user}}/{{task.repo}} <a href="{{task.status}}">status</a></li>
   {{/each}}
-
 </ul>
 {{else}}
   <p>No hay tareas en curso aún...</p>
