@@ -17,7 +17,14 @@ sudo npm install -g bower ember-cli
 
 ## ¿Cómo instalar la aplicación?
 
-El primer paso es crear un entorno virtual para
+El primer paso es clonar el repositorio:
+
+```
+clone https://github.com/hugoruscitti/huayra-builder
+cd huayra-builder
+```
+
+Luego, hay que crear un entorno virtual para
 python y luego instalar las dependencias
 así:
 
