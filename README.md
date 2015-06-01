@@ -6,7 +6,13 @@ para la distribución huayra.
 
 ## Dependencias generales
 
-Deberías tener instalado pip, virtualenv, npm, bower, emberjs y redis.
+Deberías tener instalado pip, virtualenv, npm, bower, emberjs y redis. En Debian o Huayra se pueden instalar así:
+
+```
+sudo apt-get install redis-server python-pip nodejs nodejs-legacy
+sudo pip install virtualenv
+sudo npm install -g bower ember-cli
+```
 
 
 ## ¿Cómo instalar la aplicación?
