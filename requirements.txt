@@ -6,6 +6,7 @@ Flask==0.10.1
 honcho==0.6.6
 itsdangerous==0.24
 Jinja2==2.7.3
+juggernaut==0.2
 kombu==3.0.26
 MarkupSafe==0.23
 pytz==2015.4
